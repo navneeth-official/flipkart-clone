@@ -1,10 +1,11 @@
 name: Deploy to GitHub Pages
 
-# Grant minimal permissions so the workflow-runner's GITHUB_TOKEN can publish to Pages
+# Grant permissions so the workflow-runner's GITHUB_TOKEN can publish to Pages
 permissions:
   contents: read
   pages: write
   id-token: write
+  administration: write
 
 on:
   push:
@@ -39,6 +40,8 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
