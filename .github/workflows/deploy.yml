@@ -8,16 +8,18 @@ permissions:
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main, master ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        # keep default persist-credentials=true so the GITHUB_TOKEN is available to subsequent steps
         with:
           fetch-depth: 0
 
@@ -25,22 +27,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build (production)
-        # For GitHub Pages hosting under https://<user>.github.io/<repo>/ we set base-href to /<repo>/
+      - name: Build (production - static)
+        # Build static version for GitHub Pages
+        # Even with SSR enabled, Angular creates a browser folder with static files
         run: npm run build -- --configuration production --base-href /flipkart-clone/
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          # Optional: use a personal access token if your organization or repo blocks
-          # GITHUB_TOKEN from having write access to Pages. Create a PAT with
-          # 'repo' (or at least repo:status + repo_deployment + public_repo) scope,
-          # then add it to your repository secrets as GH_PAGES_TOKEN.
-          # If GH_PAGES_TOKEN is not set, the action will fall back to GITHUB_TOKEN.
-          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/flipkart
+          path: './dist/flipkart/browser'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
