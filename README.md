@@ -57,3 +57,16 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Demo (GitHub Pages)
+
+The site is published to GitHub Pages at:
+
+https://navneeth-official.github.io/flipkart-clone/
+
+It is deployed automatically by a GitHub Actions workflow on pushes to the `master` branch. To verify the deployment:
+
+1. Open the repository on GitHub and go to the Actions tab to inspect the "Deploy to GitHub Pages" workflow run and logs.
+2. After a successful run, open the URL above. It can take a minute after the workflow finishes for Pages to become available.
+
+If you prefer the site to be served at the root (https://navneeth-official.github.io/) instead, create a repository named `navneeth-official.github.io` and I can update the workflow's base href accordingly.
