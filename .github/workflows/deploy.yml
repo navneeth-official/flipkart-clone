@@ -1,5 +1,11 @@
 name: Deploy to GitHub Pages
 
+# Grant minimal permissions so the workflow-runner's GITHUB_TOKEN can publish to Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 on:
   push:
     branches: [ master ]
@@ -11,6 +17,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        # keep default persist-credentials=true so the GITHUB_TOKEN is available to subsequent steps
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
