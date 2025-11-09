@@ -1,0 +1,13 @@
+<div class="top-deal">
+    <h4 style="background-color: rgba(255, 255, 255, 0); left: 25px; top:-8px; position:relative;">Top Deals</h4>
+    <ul class="card-container">
+        @for(card of cards;track card.title){
+        <div class="card">
+            <li style="height:140px"><img style="position:relative; width:auto; height:120px; align-items: center; object-fit: cover;" src={{card.thumbnail}} alt="card-img"></li>
+            <div></div>
+            <li padding>{{card.title}}</li>
+            <li style="font-weight: bold;">From {{card.price}}</li>
+        </div>
+        }
+    </ul>
+</div>

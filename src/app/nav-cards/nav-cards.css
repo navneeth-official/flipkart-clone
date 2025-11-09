@@ -1,0 +1,69 @@
+.card-container {
+    position: relative;
+    margin-left: -10px;
+    margin-right: -10px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px
+}
+
+.card {
+    position: relative;
+    list-style-type: none;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    right: 15px;
+    cursor: pointer;
+}
+
+.transparent-backdrop {
+    background: transparent;
+}
+
+.popup-box {
+    background: rgb(255, 255, 255);
+    line-height: 40px;
+    color: rgb(51, 51, 51);
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow:
+  -4px 4px 5px rgba(0, 0, 0, 0.183),  /* left */
+   4px 4px 5px rgba(0, 0, 0, 0.098);  /* right */
+    width: 250px;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-box ul {
+    list-style-type: none;
+    position: relative;
+    margin-top: 0px;
+}
+
+.popup-box li{
+    transition: all 0.6 ease-in;
+    transition-duration: 300ms;
+    margin-left: -40px;
+    padding-left:20px;
+    border-radius: 5px;
+}
+
+.popup-box li:hover{
+    font-weight: 600;
+    transition-duration: 300ms;
+    background-color: #a1b7ff36;
+}
+
+.card:hover p{
+    color: #2A55E5;
+}
+
+.card:hover li .cap{
+    transform: rotate(180deg) translateY(0px);
+    transition-duration: 200ms;
+    transform-origin: center;
+}
