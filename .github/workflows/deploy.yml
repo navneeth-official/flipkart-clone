@@ -36,5 +36,11 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # Optional: use a personal access token if your organization or repo blocks
+          # GITHUB_TOKEN from having write access to Pages. Create a PAT with
+          # 'repo' (or at least repo:status + repo_deployment + public_repo) scope,
+          # then add it to your repository secrets as GH_PAGES_TOKEN.
+          # If GH_PAGES_TOKEN is not set, the action will fall back to GITHUB_TOKEN.
+          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/flipkart
